@@ -27,9 +27,9 @@ public class EmployeeEntity {
     @Column(name = "nombres", nullable = false)
     private String name;
 
-    @Column(name = "usuario", nullable = false)
+    @Column(name = "usuario", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "clave", nullable = false)
+    @Column(name = "clave", unique = true, nullable = false)
     private String key;
 }
