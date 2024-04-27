@@ -1,0 +1,25 @@
+server:
+    port: 4000
+    error:
+        include-message: always
+
+spring:
+    config:
+        import: secrets.yml
+    jpa:
+        database: mysql
+        database-platform: org.hibernate.dialect.MySQLDialect
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                format-sql: true
+
+application:
+    security:
+        jwt:
+            secret-key: 7d12we1edwe12e2esd23e12ewqd3qwe1wewd312ewq9
+            expiration: 86400000 # 1 day in milliseconds
+            refresh-token:
+                expiration: 604800000 # 1 week in milliseconds
