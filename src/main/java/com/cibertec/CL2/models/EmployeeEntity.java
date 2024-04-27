@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "empleado")
 @Data
@@ -32,4 +34,7 @@ public class EmployeeEntity {
 
     @Column(name = "clave", unique = true, nullable = false)
     private String key;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<SessionTokenEntity> sessionTokens;
 }
