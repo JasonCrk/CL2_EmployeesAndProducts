@@ -1,5 +1,7 @@
 package com.cibertec.CL2.models;
 
+import com.cibertec.CL2.models.enums.Role;
+
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +20,7 @@ public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empleado")
-    private int id;
+    private Integer id;
 
     @Column(name = "ape_materno", nullable = false)
     private String motherLastName;
@@ -35,6 +37,27 @@ public class EmployeeEntity {
     @Column(name = "clave", unique = true, nullable = false)
     private String key;
 
+    @Enumerated
+    @Column(nullable = false)
+    private Role role;
+
+    @Column(name = "is_enabled", columnDefinition = "BOOLEAN", nullable = false)
+    private Boolean isEnabled;
+
+    @Column(name = "is_account_non_expired", columnDefinition = "BOOLEAN", nullable = false)
+    private Boolean isAccountNonExpired;
+
+    @Column(name = "is_account_non_locked", columnDefinition = "BOOLEAN", nullable = false)
+    private Boolean isAccountNonLocked;
+
+    @Column(name = "is_credentials_non_expired", columnDefinition = "BOOLEAN", nullable = false)
+    private Boolean isCredentialsNonExpired;
+
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<SessionTokenEntity> sessionTokens;
+
+    @PrePersist
+    public void setDefaultValues() {
+        this.role = Role.EMPLOYEE;
+    }
 }
