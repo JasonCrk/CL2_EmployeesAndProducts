@@ -24,8 +24,8 @@ public class Cl2EmerzonJavierKolkiMartinezApplication {
 		return args -> {
 			employeeRepository.save(EmployeeEntity.builder()
 					.name("Nombre del empleado") // Este es el username
-					.username("Empleado 1")
-					.key(passwordEncoder.encode("123456")) // Esta es la clave
+					.username("teacher")
+					.key(passwordEncoder.encode("12345")) // Esta es la clave
 					.lastName("Apellido paterno")
 					.motherLastName("Apellido materno")
 					.build());
