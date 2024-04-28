@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -56,10 +57,14 @@ public class EmployeeEntity {
     private Boolean isCredentialsNonExpired;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<SessionTokenEntity> sessionTokens;
+    private List<SessionTokenEntity> sessionTokens = new ArrayList<>();
 
     @PrePersist
     public void setDefaultValues() {
         this.role = Role.EMPLOYEE;
+        this.isEnabled = true;
+        this.isAccountNonExpired = true;
+        this.isAccountNonLocked = true;
+        this.isCredentialsNonExpired = true;
     }
 }
